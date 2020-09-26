@@ -12,11 +12,13 @@ let index ={
             nickname:$("#nickname").val(),
         };
 
+        console.log(data["username"]);
+
         $.ajax({
             type:"POST",
             url:"/api/joinProc",
             data:JSON.stringify(data),
-            dataType:"application/json;charset=utf-8"
+            contentType:"application/json; charset=utf-8"
         })
         .done(function(response){
             if(response.status === 500){
@@ -26,9 +28,9 @@ let index ={
                 alert("로그인에 성공하였습니다.");
             }
             location.href="/";
-        }).fail(function(error){
+        }).fail(function (error){
             alert(JSON.stringify(error));
-        })
+        });
     }
 }
 index.init();
