@@ -1,0 +1,25 @@
+{{> layout/header}}
+<br>
+<div class="container">
+    <h2>ToDo List</h2>
+    <br>
+    <table class="table">
+        <thead class="table-success">
+        <tr>
+            <th>user</th>
+            <th>title</th>
+            <th>deadline</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#tasks}}
+        <tr>
+            <td>null</td>
+            <td>{{title}}</td>
+            <td>{{deadline}}</td>
+        </tr>
+        {{/tasks}}
+        </tbody>
+    </table>
+</div>
+{{> layout/footer}}
