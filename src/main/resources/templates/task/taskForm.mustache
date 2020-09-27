@@ -6,20 +6,25 @@
             <label for="title">Title:</label>
             <input type="text" class="form-control" placeholder="Enter title" id="title">
         </div>
+        <div class="form-group">
+            <label for="deadline">deadline:</label>
+            <input type="date" class="form-control" id="deadline">
+        </div>
+
         <br>
         <div class="form-group">
             <label for="content">ToDo</label>
-            <input class="form-control summernote" placeholder="Enter title" id="content">
+            <textarea class="form-control summernote" id="content"></textarea>
         </div>
     </form>
-    <button id="btn-join" class="btn btn-primary">작성</button>
+    <button id="btn-write" class="btn btn-primary">작성</button>
 </div>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script src="/js/board.js"></script>
 <script>
     $('.summernote').summernote({
-                height:300
+                height:250
     });
 </script>
+<script src="/js/task.js"></script>
 {{>layout/footer}}
