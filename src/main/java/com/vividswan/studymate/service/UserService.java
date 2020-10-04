@@ -2,10 +2,8 @@ package com.vividswan.studymate.service;
 
 import com.vividswan.studymate.dto.UserJoinDto;
 import com.vividswan.studymate.model.RoleType;
-import com.vividswan.studymate.model.User;
 import com.vividswan.studymate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
