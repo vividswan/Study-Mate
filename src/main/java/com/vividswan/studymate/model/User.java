@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +33,5 @@ public class User {
     private RoleType role;
 
     @CreationTimestamp
-    private Timestamp createDate;
+    private LocalDateTime createDate;
 }
