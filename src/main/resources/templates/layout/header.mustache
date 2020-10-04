@@ -18,14 +18,22 @@
 
     <!-- Links -->
     <ul class="navbar-nav">
+        {{#username}}
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        {{/username}}
+        {{^username}}
+            <li class="nav-item">
+                <a class="nav-link" href="/loginForm">Login</a>
+            </li>
+        {{/username}}
         <li class="nav-item">
-            <a class="nav-link" href="/loginForm">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">회원 정보</a>
+            <a class="nav-link" href="/userInfo">회원 정보</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">ToDo_List</a>
         </li>
+
     </ul>
 </nav>
