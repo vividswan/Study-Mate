@@ -42,7 +42,7 @@ class TaskApiControllerTest {
         //given
         String title ="Test Title";
         String content = "<h1>Hello World</h1>";
-        Timestamp deadline = Timestamp.valueOf(LocalDateTime.of(2020,1,21,0,0,0));
+        LocalDateTime deadline = LocalDateTime.of(2020,1,21,0,0,0);
         TaskWriteDto taskWriteDto = TaskWriteDto.builder()
                 .title(title)
                 .content(content)
