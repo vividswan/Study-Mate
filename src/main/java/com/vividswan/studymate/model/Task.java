@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @NoArgsConstructor
@@ -26,9 +27,9 @@ public class Task {
     @Lob
     private String content;
     @CreationTimestamp
-    private Timestamp createDate;
+    private LocalDateTime createDate;
 
-    private Timestamp deadline;
+    private LocalDateTime deadline;
 
     @ManyToOne
     @JoinColumn(name="userId")
