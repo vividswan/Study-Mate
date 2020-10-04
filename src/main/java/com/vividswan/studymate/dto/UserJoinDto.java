@@ -1,5 +1,6 @@
 package com.vividswan.studymate.dto;
 
+import com.vividswan.studymate.model.RoleType;
 import com.vividswan.studymate.model.User;
 import lombok.*;
 
@@ -10,13 +11,15 @@ public class UserJoinDto {
     private String password;
     private String email;
     private String nickname;
+    private RoleType role;
 
     @Builder
-    public UserJoinDto(String username, String password, String email, String nickname){
+    public UserJoinDto(String username, String password, String email, String nickname, RoleType role){
         this.username = username;
         this.password = password;
         this.email = email;
         this.nickname = nickname;
+        this.role = role;
     }
 
     public User toEntity(){
@@ -25,6 +28,7 @@ public class UserJoinDto {
                 .password(password)
                 .email(email)
                 .nickname(nickname)
+                .role(role)
                 .build();
     }
 }
