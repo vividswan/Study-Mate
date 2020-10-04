@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.swing.text.html.parser.Entity;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,10 +13,10 @@ public class TaskWriteDto {
 
     private String title;
     private String content;
-    private Timestamp deadline;
+    private LocalDateTime deadline;
 
     @Builder
-    public TaskWriteDto(String title, String content, Timestamp deadline){
+    public TaskWriteDto(String title, String content, LocalDateTime deadline){
         this.title = title;
         this.content = content;
         this.deadline = deadline;
