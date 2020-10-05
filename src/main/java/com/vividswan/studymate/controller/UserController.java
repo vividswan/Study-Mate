@@ -25,6 +25,7 @@ public class UserController {
 
     @GetMapping("userInfo")
     public String userInfo(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        model.addAttribute("userId",principalDetails.getUserId());
         model.addAttribute("username",principalDetails.getUsername());
         model.addAttribute("email",principalDetails.getEmail());
         model.addAttribute("nickname",principalDetails.getNickname());
