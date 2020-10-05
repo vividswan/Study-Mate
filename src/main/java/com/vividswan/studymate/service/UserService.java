@@ -1,7 +1,9 @@
 package com.vividswan.studymate.service;
 
 import com.vividswan.studymate.dto.UserJoinDto;
+import com.vividswan.studymate.dto.UserUpdateDto;
 import com.vividswan.studymate.model.RoleType;
+import com.vividswan.studymate.model.User;
 import com.vividswan.studymate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,5 +26,15 @@ public class UserService {
         userJoinDto.setPassword(encPassword);
         userJoinDto.setRole(RoleType.USER);
         userRepository.save(userJoinDto.toEntity());
+    }
+
+    @Transactional
+    public void update(Long userId, UserUpdateDto userUpdateDto) {
+        User  findUser = userRepository.findById(userId).orElseThrow(()->{
+            return new IllegalArgumentException("해당 유저를 찾을 수 없습니다.");
+        });
+        String rawPassword = userUpdateDto.getPassword();
+        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+        findUser.update(encPassword, userUpdateDto.getNickname(),userUpdateDto.getEmail());
     }
 }
