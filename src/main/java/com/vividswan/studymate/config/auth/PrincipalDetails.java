@@ -60,4 +60,12 @@ public class PrincipalDetails implements UserDetails {
     public Long getUserId() {
         return user.getId();
     }
+
+    public String getNickname(){
+        return user.getNickname();
+    }
+
+    public String getEmail(){
+        return user.getEmail();
+    }
 }
