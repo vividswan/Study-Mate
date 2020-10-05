@@ -2,8 +2,34 @@ let index ={
     init : function() {
         $("#btn-join").on("click",()=>{
             this.save();
+        }),
+        $("#btn-update").on("click", ()=>{
+            this.update();
         })
     },
+
+    update: function (){
+        let data={
+            userId:parseInt($("#userId").val(),10),
+            nickname: $("#nickname").val(),
+            password: $("#password").val(),
+            email:$("#email").val(),
+        };
+       $.ajax({
+           type:"PUT",
+           url:"/api/userProc/"+data.userId,
+           contentType: "application/json;charset=utf-8",
+           data: JSON.stringify(data)
+            })
+           .done(function (response){
+               alert("회원 수정이 완료되었습니다.");
+               window.history.back();
+           })
+           .fail(function (error){
+               alert(JSON.stringify(error));
+           });
+    },
+
     save : function(){
         let data = {
             username:$("#username").val(),
