@@ -34,4 +34,10 @@ public class User {
 
     @CreationTimestamp
     private LocalDateTime createDate;
+
+    public void update(String password, String nickname, String email){
+        this.password = password;
+        this.nickname = nickname;
+        this.email=email;
+    }
 }
