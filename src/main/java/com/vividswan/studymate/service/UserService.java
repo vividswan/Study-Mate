@@ -20,12 +20,17 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void join(UserJoinDto userJoinDto) {
+    public boolean join(UserJoinDto userJoinDto) {
+        User findUser = userRepository.findByUsername(userJoinDto.getUsername()).orElseGet(()->
+            null);
+        System.out.println(findUser);
+        if(findUser!=null) return false;
         String rawPassword = userJoinDto.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         userJoinDto.setPassword(encPassword);
         userJoinDto.setRole(RoleType.USER);
         userRepository.save(userJoinDto.toEntity());
+        return true;
     }
 
     @Transactional
