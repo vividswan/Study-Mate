@@ -15,6 +15,10 @@ let index ={
             password: $("#password").val(),
             email:$("#email").val(),
         };
+        if(data.password=="" || data.nickname=="" || data.email==""){
+            alert("공백인 칸이 존재합니다.");
+            return;
+        }
        $.ajax({
            type:"PUT",
            url:"/api/userProc/"+data.userId,
@@ -37,7 +41,10 @@ let index ={
             email:$("#email").val(),
             nickname:$("#nickname").val(),
         };
-
+        if(data.password=="" || data.nickname=="" || data.email=="" || data.username ==""){
+            alert("공백인 칸이 존재합니다.");
+            return;
+        }
 
         $.ajax({
             type:"POST",
@@ -48,6 +55,10 @@ let index ={
         .done(function(response){
             if(response.status === 500){
                 alert("회원 가입에 실패하였습니다.");
+            }
+            else if(response==false){
+                alert("중복된 아이디입니다.");
+                return;
             }
             else{
                 alert("회원 가입에 성공하였습니다.");
