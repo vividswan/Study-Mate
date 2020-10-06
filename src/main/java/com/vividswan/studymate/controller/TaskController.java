@@ -1,8 +1,10 @@
 package com.vividswan.studymate.controller;
 
+import com.vividswan.studymate.config.auth.PrincipalDetails;
 import com.vividswan.studymate.model.Task;
 import com.vividswan.studymate.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,9 @@ public class TaskController {
         return "task/taskForm";
     }
 
-    @GetMapping("/taskView")
-    public String taskView(Model model){
-        List<Task> tasks = taskService.findList();
+    @GetMapping("/todolist")
+    public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        List<Task> tasks = taskService.findList(principalDetails);
         model.addAttribute("tasks",tasks);
         return "task/taskView";
     }
