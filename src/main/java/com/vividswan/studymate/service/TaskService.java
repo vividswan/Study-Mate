@@ -1,8 +1,11 @@
 package com.vividswan.studymate.service;
 
+import com.vividswan.studymate.config.auth.PrincipalDetails;
 import com.vividswan.studymate.dto.TaskWriteDto;
 import com.vividswan.studymate.model.Task;
+import com.vividswan.studymate.model.User;
 import com.vividswan.studymate.repository.TaskRepository;
+import com.vividswan.studymate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +18,19 @@ import java.util.List;
 public class TaskService {
 
     private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public void write(TaskWriteDto taskWriteDto){
+    public void write(TaskWriteDto taskWriteDto, PrincipalDetails principalDetails){
+        User findUser = userRepository.findByUsername(principalDetails.getUsername()).orElseThrow(()->{
+            return new IllegalArgumentException("해당 유저를 찾을 수 없습니다.");
+        });
+        taskWriteDto.setUser(findUser);
         taskRepository.save(taskWriteDto.toEntity());
     }
 
     @Transactional(readOnly = true)
-    public List<Task> findList() {
-        return taskRepository.findAll();
+    public List<Task> findList(PrincipalDetails principalDetails) {
+        return taskRepository.findAllByUserId(principalDetails.getUserId());
     }
 }
