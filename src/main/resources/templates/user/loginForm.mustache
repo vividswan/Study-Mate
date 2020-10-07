@@ -1,4 +1,11 @@
 {{> layout/header}}
+{{#chk}}
+<script>
+    $(document).ready(function(){
+        alert("로그인이 필요합니다.");
+    });
+</script>
+{{/chk}}
 <br/>
 <div class="container">
     <form action="/api/loginProc" method="post">
