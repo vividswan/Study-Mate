@@ -1,8 +1,12 @@
 package com.vividswan.studymate.api;
 
+import com.vividswan.studymate.config.auth.PrincipalDetails;
 import com.vividswan.studymate.dto.TaskWriteDto;
+import com.vividswan.studymate.dto.UserJoinDto;
 import com.vividswan.studymate.model.Task;
+import com.vividswan.studymate.model.User;
 import com.vividswan.studymate.repository.TaskRepository;
+import com.vividswan.studymate.repository.UserRepository;
 import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -30,11 +34,16 @@ class TaskApiControllerTest {
     private TaskRepository taskRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+
+    @Autowired
     TestRestTemplate restTemplate;
 
     @AfterEach
     public void tearDown(){
         taskRepository.deleteAll();
+        userRepository.deleteAll();;
     }
 
     @Test
@@ -42,6 +51,16 @@ class TaskApiControllerTest {
         //given
         String title ="Test Title";
         String content = "<h1>Hello World</h1>";
+        User testUser = UserJoinDto.builder()
+                .username("vividswan")
+                .password("1234")
+                .email("vividswan@naver.com")
+                .nickname("soohwan")
+                .build().toEntity();
+
+        userRepository.save(testUser);
+        PrincipalDetails principalDetails = new PrincipalDetails(testUser);
+
         LocalDateTime deadline = LocalDateTime.of(2020,1,21,0,0,0);
         TaskWriteDto taskWriteDto = TaskWriteDto.builder()
                 .title(title)
