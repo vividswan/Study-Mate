@@ -1,5 +1,10 @@
 {{> layout/header}}
 <br>
+<style>
+    .table, .table-success, tr, thead, th, td, tbody{
+        border: 1px solid lightgray;
+    }
+</style>
 <div class="container">
     <h2>ToDo List</h2>
     <br>
@@ -7,19 +12,22 @@
         <thead class="table-success">
         <tr>
             <th>user</th>
-            <th>title</th>
+            <th style="width: 50vw">title</th>
             <th>deadline</th>
         </tr>
         </thead>
         <tbody>
         {{#tasks}}
         <tr>
-            <td>null</td>
-            <td>{{title}}</td>
+            <td>{{username}}</td>
+            <td style="width: 50vw">{{title}}</td>
             <td>{{deadline}}</td>
         </tr>
         {{/tasks}}
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+        <a href="/taskForm"><button class="btn btn-primary">작성하기</button></a>
+    </div>
 </div>
 {{> layout/footer}}
