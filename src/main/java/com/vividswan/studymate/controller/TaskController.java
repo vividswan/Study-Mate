@@ -25,7 +25,11 @@ public class TaskController {
     @GetMapping("/todolist")
     public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
         List<Task> tasks = taskService.findList(principalDetails);
+        String username =principalDetails.getUsername();
+        String nickname = principalDetails.getNickname();
         model.addAttribute("tasks",tasks);
+        model.addAttribute("username",username);
+        model.addAttribute("nickname",nickname);
         return "task/taskView";
     }
 }
