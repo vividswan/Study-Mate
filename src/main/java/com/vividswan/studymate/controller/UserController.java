@@ -1,15 +1,10 @@
 package com.vividswan.studymate.controller;
 
 import com.vividswan.studymate.config.auth.PrincipalDetails;
-import com.vividswan.studymate.dto.UserJoinDto;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -19,7 +14,14 @@ public class UserController {
     }
 
     @GetMapping("loginForm")
-    public String loginForm(){
+    public String loginForm(Model model, int first)
+    {
+        boolean chk;
+        if(first==1){
+            chk =false;
+        }
+        else chk = true;
+        model.addAttribute("chk",chk);
         return "user/loginForm";
     }
 
