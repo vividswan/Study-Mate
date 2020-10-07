@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -18,7 +19,10 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("/taskForm")
-    public String taskForm(){
+    public String taskForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        String username = principalDetails.getUsername();
+        model.addAttribute("username",principalDetails);
+        model.addAttribute("now", LocalDateTime.now());
         return "task/taskForm";
     }
 
