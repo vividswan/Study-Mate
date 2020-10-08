@@ -16,13 +16,15 @@ public class TaskWriteDto {
     private String content;
     private LocalDateTime deadline;
     private User user;
+    private int isSuccess;
 
     @Builder
-    public TaskWriteDto(String title, String content, LocalDateTime deadline, User user){
+    public TaskWriteDto(String title, String content, LocalDateTime deadline, User user, int isSuccess){
         this.title = title;
         this.content = content;
         this.deadline = deadline;
         this.user = user;
+        this.isSuccess = isSuccess;
     }
 
     public Task toEntity(){
@@ -31,6 +33,7 @@ public class TaskWriteDto {
                 .content(content)
                 .deadline(deadline)
                 .user(user)
+                .isSuccess(isSuccess)
                 .build();
     }
 }
