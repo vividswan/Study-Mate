@@ -23,14 +23,15 @@ public class TaskService {
     @Transactional
     public void write(TaskWriteDto taskWriteDto, PrincipalDetails principalDetails){
         User findUser = userRepository.findByUsername(principalDetails.getUsername()).orElseThrow(()->{
-            return new IllegalArgumentException("해당 유저를 찾을 수 없습니다.");
+            return new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
         });
         taskWriteDto.setUser(findUser);
+        taskWriteDto.setIsSuccess(0);
         taskRepository.save(taskWriteDto.toEntity());
     }
 
     @Transactional(readOnly = true)
     public List<Task> findList(PrincipalDetails principalDetails) {
-        return taskRepository.findAllByUserId(principalDetails.getUserId());
+        return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0);
     }
 }
