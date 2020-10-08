@@ -24,7 +24,7 @@ let index = {
             else{
                 alert("작성에 성공하였습니다.");
             }
-            location.href="/todolist";
+            location.href="/todolist/proceeding";
         })
         .fail(function (error){
            JSON.stringify(error);
