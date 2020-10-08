@@ -26,7 +26,7 @@ public class TaskController {
         return "task/taskForm";
     }
 
-    @GetMapping("/todolist")
+    @GetMapping("/todolist/proceeding")
     public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
         List<Task> tasks = taskService.findList(principalDetails);
         String username =principalDetails.getUsername();
