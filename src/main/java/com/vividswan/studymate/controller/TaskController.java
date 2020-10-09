@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
@@ -32,15 +33,9 @@ public class TaskController {
     }
 
     @GetMapping("/todolist/proceeding")
-    @ResponseBody
-    public Page<Task> taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.DESC) Pageable pageable){
-        Page<Task> tasks = taskService.findList(principalDetails, pageable);
-        return tasks;
-//        String username =principalDetails.getUsername();
-//        String nickname = principalDetails.getNickname();
-//        model.addAttribute("tasks",tasks);
-//        model.addAttribute("username",username);
-//        model.addAttribute("nickname",nickname);
-//        return "task/taskView";
+    public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.DESC) Pageable pageable, int page){
+        Page<Task> pagingTasks = taskService.findList(principalDetails, pageable);
+        model.addAttribute("pagingTasks",pagingTasks);
+        return "task/taskView";
     }
 }
