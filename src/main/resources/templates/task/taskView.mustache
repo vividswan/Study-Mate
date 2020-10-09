@@ -17,15 +17,34 @@
         </tr>
         </thead>
         <tbody>
-        {{#tasks}}
+        {{#pagingTasks.content}}
         <tr>
-            <td>{{username}}</td>
+            <td>{{user.nickname}}</td>
             <td style="width: 50vw">{{title}}</td>
             <td>{{deadline}}</td>
         </tr>
-        {{/tasks}}
+        {{/pagingTasks.content}}
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            {{#pagingTasks.first}}
+            <li class="page-item"><div class="page-link text-muted">Previous</div></li>
+            {{/pagingTasks.first}}
+            {{^pagingTasks.first}}
+                <li class="page-item"><a class="page-link" href="/todolist/proceeding?page=0">Previous</a></li>
+            {{/pagingTasks.first}}
+            &nbsp;
+            <li class="page-item"><div class="page-link text-muted">{{pagingTasks.pageable.pageNumber}}</div></li>
+            &nbsp;
+            {{#pagingTasks.last}}
+            <li class="page-item"><div class="page-link text-muted">Next</div></li>
+            {{/pagingTasks.last}}
+            {{^pagingTasks.last}}
+                <li class="page-item"><a class="page-link" href="/todolist/proceeding?page={{nextPage}}">Next</a></li>
+            {{/pagingTasks.last}}
+        </ul>
+    </div>
     <div class="d-flex justify-content-end">
         <a href="/taskForm"><button class="btn btn-primary">작성하기</button></a>
     </div>
