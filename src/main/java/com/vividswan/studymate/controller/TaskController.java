@@ -33,8 +33,10 @@ public class TaskController {
     }
 
     @GetMapping("/todolist/proceeding")
-    public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.DESC) Pageable pageable, int page){
+    public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.ASC) Pageable pageable, int page){
         Page<Task> pagingTasks = taskService.findList(principalDetails, pageable);
+        int nextPage = pagingTasks.getNumber()+1;
+        model.addAttribute("nextPage",nextPage);
         model.addAttribute("pagingTasks",pagingTasks);
         return "task/taskView";
     }
