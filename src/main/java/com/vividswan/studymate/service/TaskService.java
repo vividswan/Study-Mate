@@ -7,11 +7,12 @@ import com.vividswan.studymate.model.User;
 import com.vividswan.studymate.repository.TaskRepository;
 import com.vividswan.studymate.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
-    public List<Task> findList(PrincipalDetails principalDetails) {
-        return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0);
+    public Page<Task> findList(PrincipalDetails principalDetails, Pageable pageable) {
+        return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0, pageable);
     }
 }
