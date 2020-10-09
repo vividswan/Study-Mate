@@ -18,7 +18,7 @@ public class UserController {
     public String loginForm(Model model, @PathVariable int first)
     {
         boolean chk;
-        if(first==1){
+        if(first==0){
             chk =false;
         }
         else chk = true;
