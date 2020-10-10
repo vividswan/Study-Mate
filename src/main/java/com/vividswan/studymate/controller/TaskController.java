@@ -1,5 +1,6 @@
 package com.vividswan.studymate.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.vividswan.studymate.config.auth.PrincipalDetails;
 import com.vividswan.studymate.model.Task;
 import com.vividswan.studymate.service.TaskService;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class TaskController {
     @GetMapping("/taskForm")
     public String taskForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
         String username = principalDetails.getUsername();
-        model.addAttribute("username",principalDetails);
+        model.addAttribute("username",username);
         model.addAttribute("now", LocalDateTime.now());
         return "task/taskForm";
     }
@@ -36,8 +36,18 @@ public class TaskController {
     public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.ASC) Pageable pageable, int page){
         Page<Task> pagingTasks = taskService.findList(principalDetails, pageable);
         int nextPage = pagingTasks.getNumber()+1;
+        model.addAttribute("username",principalDetails);
         model.addAttribute("nextPage",nextPage);
         model.addAttribute("pagingTasks",pagingTasks);
         return "task/taskView";
+    }
+
+    @GetMapping("/task/detail/{id}")
+    public String taskDetail(@PathVariable long id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        Task requestTask = taskService.findTask(id);
+        String username = principalDetails.getUsername();
+        model.addAttribute("task",requestTask);
+        model.addAttribute("username",username);
+        return "task/taskDetail";
     }
 }
