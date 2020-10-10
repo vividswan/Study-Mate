@@ -10,7 +10,10 @@ let index = {
             content: $("#content").val(),
             deadline: $("#deadline").val()
         };
-
+        if(data.title==""){
+            alert("title을 작성해주세요.");
+            return;
+        }
         $.ajax({
             type:"POST",
             url:"/api/writeProc",
@@ -24,7 +27,7 @@ let index = {
             else{
                 alert("작성에 성공하였습니다.");
             }
-            location.href="/todolist/proceeding";
+            location.href="/todolist/proceeding?page=0";
         })
         .fail(function (error){
            JSON.stringify(error);
