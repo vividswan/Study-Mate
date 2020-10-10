@@ -35,4 +35,13 @@ public class TaskService {
     public Page<Task> findList(PrincipalDetails principalDetails, Pageable pageable) {
         return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0, pageable);
     }
+
+
+    @Transactional(readOnly = true)
+    public Task findTask(long id) {
+        Task requestTask = taskRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
+        });
+        return requestTask;
+    }
 }
