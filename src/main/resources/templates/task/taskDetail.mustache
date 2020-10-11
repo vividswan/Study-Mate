@@ -1,0 +1,22 @@
+{{> layout/header}}
+<br/>
+<div class="container">
+    <div class="d-flex justify-content-center">
+    <h1>{{task.title}}</h1>
+    </div>
+    <div class="d-flex flex-row-reverse">
+    <p><strong>deadline</strong> : {{deadline}}</p>
+    </div>
+    <hr/>
+    <div>{{{task.content}}}</div>
+    <hr/>
+    <div class="d-flex flex-row-reverse">
+        <a href="#"><button class="btn btn-danger">삭제</button></a>
+        <p>&nbsp;</p>
+        <a href="#"><button class="btn btn-info">수정하기</button></a>
+        <p>&nbsp;</p>
+        <button class="btn btn-secondary" onclick="history.back()">뒤로가기</button>
+        <p>&nbsp;</p>
+        <a href="#"><button class="btn btn-primary">완료</button></a>
+    </div>
+</div>
