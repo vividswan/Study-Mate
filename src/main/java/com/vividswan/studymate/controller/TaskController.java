@@ -1,6 +1,5 @@
 package com.vividswan.studymate.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.vividswan.studymate.config.auth.PrincipalDetails;
 import com.vividswan.studymate.model.Task;
 import com.vividswan.studymate.service.TaskService;
@@ -14,9 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,7 +28,6 @@ public class TaskController {
     public String taskForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
         String username = principalDetails.getUsername();
         model.addAttribute("username",username);
-        model.addAttribute("now", LocalDateTime.now());
         return "task/taskForm";
     }
 
@@ -42,12 +41,17 @@ public class TaskController {
         return "task/taskView";
     }
 
+
     @GetMapping("/task/detail/{id}")
     public String taskDetail(@PathVariable long id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
         Task requestTask = taskService.findTask(id);
         String username = principalDetails.getUsername();
         model.addAttribute("task",requestTask);
         model.addAttribute("username",username);
+        String deadline = requestTask.getDeadline().format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm"));
+        model.addAttribute("deadline",deadline);
         return "task/taskDetail";
     }
+
+
 }
