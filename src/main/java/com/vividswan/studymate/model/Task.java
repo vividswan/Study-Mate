@@ -1,13 +1,13 @@
 package com.vividswan.studymate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +34,11 @@ public class Task {
     @ManyToOne
     @JoinColumn(name="userId")
     private User user;
+
+    @OneToMany(mappedBy = "task" ,fetch = FetchType.EAGER, cascade =  CascadeType.REMOVE)
+    @JsonIgnoreProperties({"task"})
+    @OrderBy("id desc")
+    private List<Feedback> feedbacks = new ArrayList<>();
 
     private int isSuccess;
 }
