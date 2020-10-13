@@ -5,10 +5,11 @@
     <h1>{{task.title}}</h1>
     </div>
     <div class="d-flex flex-row-reverse">
-    <p><strong>deadline</strong> : {{deadline}}</p>
+    <p><strong>deadline</strong> : {{task.stringDeadline}}</p>
     </div>
     <hr/>
     <div>{{{task.content}}}</div>
+    <input type="hidden" value="{{task.id}}" id="id"/>
     <hr/>
     <div class="feedback">
         <div class="row">
@@ -25,7 +26,7 @@
     </div>
     <hr/>
     <div class="d-flex flex-row-reverse">
-        <a href="#"><button class="btn btn-danger">삭제</button></a>
+        <button id="btn-delete" class="btn btn-danger">삭제</button>
         <p>&nbsp;</p>
         <a href="#"><button class="btn btn-info">수정하기</button></a>
         <p>&nbsp;</p>
@@ -34,3 +35,5 @@
         <a href="#"><button class="btn btn-primary">완료</button></a>
     </div>
 </div>
+<script src="/js/task.js"></script>
+{{>layout/footer}}
