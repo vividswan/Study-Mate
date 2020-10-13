@@ -21,7 +21,7 @@
         <tr>
             <td>{{user.nickname}}</td>
             <td style="width: 50vw"><a href="/task/detail/{{id}}">{{title}}</a></td>
-            <td>{{deadline}}</td>
+            <td>{{stringDeadline}}</td>
         </tr>
         {{/pagingTasks.content}}
         </tbody>
@@ -35,7 +35,7 @@
                 <li class="page-item"><a class="page-link" href="/todolist/proceeding?page=0">Previous</a></li>
             {{/pagingTasks.first}}
             &nbsp;
-            <li class="page-item"><div class="page-link text-muted">{{nextPage}}</div></li>
+            <li class="page-item"><div class="page-link">{{nextPage}}</div></li>
             &nbsp;
             {{#pagingTasks.last}}
             <li class="page-item"><div class="page-link text-muted">Next</div></li>
