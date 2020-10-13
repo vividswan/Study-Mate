@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
+
 @Service
 @RequiredArgsConstructor
 public class TaskService {
@@ -28,6 +30,7 @@ public class TaskService {
         });
         taskWriteDto.setUser(findUser);
         taskWriteDto.setIsSuccess(0);
+        taskWriteDto.setStringDeadline(taskWriteDto.getDeadline().format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")));
         taskRepository.save(taskWriteDto.toEntity());
     }
 
@@ -43,5 +46,9 @@ public class TaskService {
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
         });
         return requestTask;
+    }
+
+    public void delete(long id) {
+        taskRepository.deleteById(id);
     }
 }
