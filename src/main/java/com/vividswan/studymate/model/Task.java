@@ -41,4 +41,6 @@ public class Task {
     private List<Feedback> feedbacks = new ArrayList<>();
 
     private int isSuccess;
+
+    private String stringDeadline;
 }
