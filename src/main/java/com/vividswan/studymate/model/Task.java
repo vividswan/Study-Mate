@@ -1,11 +1,13 @@
 package com.vividswan.studymate.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vividswan.studymate.dto.TaskUpdateDto;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,4 +45,11 @@ public class Task {
     private int isSuccess;
 
     private String stringDeadline;
+
+    public void update(TaskUpdateDto taskUpdateDto){
+        title = taskUpdateDto.getTitle();
+        content = taskUpdateDto.getContent();
+        deadline = taskUpdateDto.getDeadline();
+        this.stringDeadline = deadline.format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm"));
+    }
 }
