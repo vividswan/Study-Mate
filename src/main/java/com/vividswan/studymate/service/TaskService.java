@@ -1,6 +1,7 @@
 package com.vividswan.studymate.service;
 
 import com.vividswan.studymate.config.auth.PrincipalDetails;
+import com.vividswan.studymate.dto.TaskUpdateDto;
 import com.vividswan.studymate.dto.TaskWriteDto;
 import com.vividswan.studymate.model.Task;
 import com.vividswan.studymate.model.User;
@@ -43,12 +44,21 @@ public class TaskService {
     @Transactional(readOnly = true)
     public Task findTask(long id) {
         Task requestTask = taskRepository.findById(id).orElseThrow(()->{
-            return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
+            return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
         });
         return requestTask;
     }
 
+    @Transactional
     public void delete(long id) {
         taskRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void update(long id, TaskUpdateDto taskUpdateDto) {
+        Task requestTask = taskRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
+        });
+        requestTask.update(taskUpdateDto);
     }
 }
