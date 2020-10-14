@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +17,7 @@ public class TaskWriteDto {
     private String content;
     private LocalDateTime deadline;
     private User user;
+    private String stringDeadline;
     private int isSuccess;
 
     @Builder
@@ -34,6 +36,7 @@ public class TaskWriteDto {
                 .deadline(deadline)
                 .user(user)
                 .isSuccess(isSuccess)
+                .stringDeadline(stringDeadline)
                 .build();
     }
 }
