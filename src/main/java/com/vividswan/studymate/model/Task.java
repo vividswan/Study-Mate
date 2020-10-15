@@ -42,7 +42,9 @@ public class Task {
     @OrderBy("id desc")
     private List<Feedback> feedbacks = new ArrayList<>();
 
+    @Setter
     private int isSuccess;
+
 
     private String stringDeadline;
 
