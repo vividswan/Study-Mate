@@ -8,7 +8,32 @@ let index = {
         });
         $("#btn-update").on("click", ()=>{
             this.update();
+        });
+        $("#btn-success").on("click", ()=>{
+            this.success();
         })
+    },
+    success: function (){
+        let id = $("#id").val();
+         let  isSuccess = $("#isSuccess").val();
+        $.ajax({
+            type:"PUT",
+            url:`/api/taskSuccess/${id}`,
+            data : JSON.stringify(isSuccess),
+            contentType:"application/json;utf-8"
+        })
+            .done(function (response){
+                if(response===500){
+                    alert("수정에 실패했습니다.");
+                }
+                else {
+                    alert("수정에 성공했습니다.");
+                }
+                location.href=`http://localhost:8080/task/detail/${id}`;
+            })
+            .fail(function (error){
+                alert(JSON.stringify(error));
+            });
     },
     update:function (){
         let data = {
@@ -16,7 +41,7 @@ let index = {
             title: $("#title").val(),
             content : $("#content").val(),
             deadline:  $("#deadline").val()
-        }
+        };
         $.ajax({
             type : "PUT",
             url : `/api/taskUpdate/${data.id}`,
