@@ -10,6 +10,7 @@
     <hr/>
     <div>{{{task.content}}}</div>
     <input type="hidden" value="{{task.id}}" id="id"/>
+    <input type="hidden" value="{{task.isSuccess}}" id="isSuccess">
     <hr/>
     <div class="feedback">
         <div class="row">
@@ -28,11 +29,16 @@
     <div class="d-flex flex-row-reverse">
         <button id="btn-delete" class="btn btn-danger">삭제</button>
         <p>&nbsp;</p>
-        <a href="#"><button class="btn btn-info">수정하기</button></a>
+        <a href="/task/update/{{task.id}}"><button class="btn btn-info">수정하기</button></a>
         <p>&nbsp;</p>
         <button class="btn btn-secondary" onclick="history.back()">뒤로가기</button>
         <p>&nbsp;</p>
-        <a href="#"><button class="btn btn-primary">완료</button></a>
+        {{#isSuccess}}
+            <button class="btn btn-danger" id="btn-success">완료취소</button>
+        {{/isSuccess}}
+        {{^isSuccess}}
+            <button class="btn btn-primary" id="btn-success">완료</button>
+        {{/isSuccess}}
     </div>
 </div>
 <script src="/js/task.js"></script>
