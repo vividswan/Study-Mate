@@ -40,6 +40,11 @@ public class TaskService {
         return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0, pageable);
     }
 
+    @Transactional(readOnly = true)
+    public Page<Task> findSuccessList(PrincipalDetails principalDetails, Pageable pageable) {
+        return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),1, pageable);
+    }
+
 
     @Transactional(readOnly = true)
     public Task findTask(long id) {
@@ -60,5 +65,16 @@ public class TaskService {
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
         });
         requestTask.update(taskUpdateDto);
+    }
+
+    @Transactional
+    public void updateSuccess(long id, int successSwc) {
+        Task requestTask = taskRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
+        });
+        if(successSwc==1) requestTask.setIsSuccess(0);
+        else {
+            requestTask.setIsSuccess(1);
+        }
     }
 }
