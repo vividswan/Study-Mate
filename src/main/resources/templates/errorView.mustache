@@ -1,0 +1,19 @@
+{{>layout/header}}
+<script>
+    const backFunc = function (){
+        history.back();
+    }
+</script>
+<br>
+<div class="container">
+    <h1>Error Message Page</h1>
+    <hr>
+    <div class="d-flex justify-content-center">
+    <h3>{{errorMessage}}</h3>
+    </div>
+    <hr>
+    <div class="d-flex flex-row-reverse">
+        <button onclick="backFunc()" class="btn btn-primary">뒤로 가기</button>
+    </div>
+</div>
+{{>layout/footer}}
