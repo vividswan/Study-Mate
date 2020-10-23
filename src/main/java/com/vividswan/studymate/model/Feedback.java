@@ -10,16 +10,13 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Feedback {
+public class Feedback extends CreateDateEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String content;
-
-    @CreatedDate
-    private LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "userId")
