@@ -1,21 +1,15 @@
 package com.vividswan.studymate.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
 @Builder
 @Entity
-public class User {
+public class User  extends CreateDateEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,9 +25,6 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private RoleType role;
-
-    @CreationTimestamp
-    private LocalDateTime createDate;
 
     public void update(String password, String nickname, String email){
         this.password = password;
