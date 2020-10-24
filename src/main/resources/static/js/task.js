@@ -17,25 +17,25 @@ let index = {
         })
     },
     createFeedback: function (){
-        data={
-            user:$("#userId"),
-            task:$("#userId"),
-            content:$("#feedback"),
+        let data={
+            userId:$("#userId").val(),
+            taskId:$("#id").val(),
+            content:$("#feedback").val(),
         }
         $.ajax({
             type:"POST",
             url:"/api/task/create",
             data:JSON.stringify(data),
-            dataType:"application/json;utf-8"
+            contentType : "application/json;utf-8"
         })
             .done(function (response){
                 if(response===500){
-                    alert("댓글 작성에 실패했습니다.");
+                    alert("피드백 작성에 실패했습니다.");
                 }
                 else {
-                    alert("댓글 작성에 성공했습니다.");
+                    alert("피드백 작성에 성공했습니다.");
                 }
-                window.location.reload();
+                location.reload();
             })
             .fail(function (error){
                 alert(JSON.stringify(error));
