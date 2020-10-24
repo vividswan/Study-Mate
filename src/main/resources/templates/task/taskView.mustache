@@ -9,10 +9,15 @@
     <h2>{{title}}</h2>
     <br>
     <table class="table">
+        {{^successPage}}
+        <thead class="table-warning">
+        {{/successPage}}
+        {{#successPage}}
         <thead class="table-success">
+        {{/successPage}}
         <tr>
             <th>user</th>
-            <th style="width: 50vw">title</th>
+            <th style="width: 30vw">title</th>
             <th>deadline</th>
         </tr>
         </thead>
@@ -20,7 +25,7 @@
         {{#pagingTasks.content}}
         <tr>
             <td>{{user.nickname}}</td>
-            <td style="width: 50vw"><a href="/task/detail/{{id}}">{{title}}</a></td>
+            <td style="width: 30vw"><a href="/task/detail/{{id}}">{{title}}</a></td>
             <td>{{stringDeadline}}</td>
         </tr>
         {{/pagingTasks.content}}
