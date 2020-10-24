@@ -14,7 +14,7 @@ public class FeedbackService {
 
     @Transactional
     public void createFeedback(FeedbackCreateDto feedbackCreateDto) {
-        feedbackRepository.createReply(feedbackCreateDto.getUserId(), feedbackCreateDto.getUserId(), feedbackCreateDto.getContent());
+        feedbackRepository.createReply(feedbackCreateDto.getUserId(), feedbackCreateDto.getTaskId(), feedbackCreateDto.getContent());
     }
 
     @Transactional
