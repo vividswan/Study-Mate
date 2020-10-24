@@ -24,10 +24,13 @@
         <div class="card">
             <div class="card-header d-flex justify-content-center">Feedback List</div
             <div class="list-group">
+                {{#task.feedbacks}}
                     <div class="list-group-item d-flex justify-content-between">
-                            <div>hello</div>
-                            <button class="btn btn-dark badge">댓글 삭제</button>
+                        <input type="hidden" id="feedback-id" value="{{id}}">
+                        <div>{{content}}</div>
+                        <button class="btn btn-dark badge" id="feedback-delete">삭제</button>
                     </div>
+                {{/task.feedbacks}}
             </div>
         </div>
         <hr/>
