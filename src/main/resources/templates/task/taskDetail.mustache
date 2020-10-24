@@ -9,19 +9,20 @@
     </div>
     <hr/>
     <div>{{{task.content}}}</div>
+    <input type="hidden" value="{{userId}}" id="userId">
     <input type="hidden" value="{{task.id}}" id="id"/>
     <input type="hidden" value="{{task.isSuccess}}" id="isSuccess">
     <hr/>
     <div class="feedback">
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" id="feedback" placeholder="Feedback 작성" name="feedback">
+                <textarea class="form-control" id="feedback" placeholder="Feedback 작성" name="feedback" rows="1"></textarea>
             </div>
-            <button class="btn btn-primary">작성</button><br/>
+            <button class="btn btn-primary" id="feedback-create">작성</button><br/>
         </div>
         <br>
         <div class="card">
-            <div class="card-header d-flex justify-content-center">Feedback List</div>
+            <div class="card-header d-flex justify-content-center">Feedback List</div
             <div class="list-group">
                     <div class="list-group-item d-flex justify-content-between">
                             <div>hello</div>
