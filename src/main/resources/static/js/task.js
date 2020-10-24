@@ -14,13 +14,35 @@ let index = {
         });
         $("#feedback-create").on("click",()=>{
             this.createFeedback();
+        });
+        $("#feedback-delete").on("click",()=>{
+            this.deleteFeedback();
+        });
+    },
+    deleteFeedback: function (){
+        let id=$("#feedback-id").val();
+        $.ajax({
+            type:"DELETE",
+            url:`/api/feedback/delete/${id}`,
+            contentType: "application/json;utf-8"
         })
+            .done(function (response){
+                alert("삭제되었습니다.");
+                location.reload();
+            })
+            .fail(function (error){
+                JSON.stringify(error);
+            });
     },
     createFeedback: function (){
         let data={
             userId:$("#userId").val(),
             taskId:$("#id").val(),
             content:$("#feedback").val(),
+        }
+        if(data.content==""){
+            alert("피드백 내용을 입력해주세요.");
+            return;
         }
         $.ajax({
             type:"POST",
