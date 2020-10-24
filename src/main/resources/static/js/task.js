@@ -11,7 +11,35 @@ let index = {
         });
         $("#btn-success").on("click", ()=>{
             this.success();
+        });
+        $("#feedback-create").on("click",()=>{
+            this.createFeedback();
         })
+    },
+    createFeedback: function (){
+        data={
+            user:$("#userId"),
+            task:$("#userId"),
+            content:$("#feedback"),
+        }
+        $.ajax({
+            type:"POST",
+            url:"/api/task/create",
+            data:JSON.stringify(data),
+            dataType:"application/json;utf-8"
+        })
+            .done(function (response){
+                if(response===500){
+                    alert("댓글 작성에 실패했습니다.");
+                }
+                else {
+                    alert("댓글 작성에 성공했습니다.");
+                }
+                window.location.reload();
+            })
+            .fail(function (error){
+                alert(JSON.stringify(error));
+            });
     },
     success: function (){
         let id = $("#id").val();
