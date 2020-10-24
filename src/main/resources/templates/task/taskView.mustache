@@ -45,8 +45,10 @@
             {{/pagingTasks.last}}
         </ul>
     </div>
+    {{^successPage}}
     <div class="d-flex justify-content-end">
         <a href="/taskForm"><button class="btn btn-primary">작성하기</button></a>
     </div>
+    {{/successPage}}
 </div>
 {{> layout/footer}}
