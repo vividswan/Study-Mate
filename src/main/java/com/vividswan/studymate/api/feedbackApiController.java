@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class feedbackApiController {
+public class FeedbackApiController {
 
     private final FeedbackService feedbackService;
 
 
     @PostMapping("/api/task/create")
     int createFeedback(@RequestBody FeedbackCreateDto feedbackCreateDto){
-        feedbackService.createFeedback(feedbackCreateDto);
+       feedbackService.createFeedback(feedbackCreateDto);
         return HttpStatus.OK.value();
     }
 }
