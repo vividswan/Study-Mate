@@ -16,4 +16,9 @@ public class FeedbackService {
     public void createFeedback(FeedbackCreateDto feedbackCreateDto) {
         feedbackRepository.createReply(feedbackCreateDto.getUserId(), feedbackCreateDto.getUserId(), feedbackCreateDto.getContent());
     }
+
+    @Transactional
+    public void deleteFeedback(long id) {
+        feedbackRepository.deleteById(id);
+    }
 }
