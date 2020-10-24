@@ -34,3 +34,4 @@ out/
 .vscode/
 /src/main/resources/application.yml
 src/main/java/com/vividswan/studymate/.DS_Store
+src/main/resources/static/.DS_Store
