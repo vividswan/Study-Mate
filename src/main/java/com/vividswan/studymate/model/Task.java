@@ -34,7 +34,7 @@ public class Task extends CreateDateEntity {
     @JoinColumn(name="userId")
     private User user;
 
-    @OneToMany(mappedBy = "task" ,fetch = FetchType.EAGER, cascade =  CascadeType.REMOVE)
+    @OneToMany(mappedBy = "task" ,fetch = FetchType.LAZY, cascade =  CascadeType.REMOVE)
     @JsonIgnoreProperties({"task"})
     @OrderBy("id desc")
     private List<Feedback> feedbacks = new ArrayList<>();
