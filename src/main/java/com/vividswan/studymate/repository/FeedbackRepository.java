@@ -10,5 +10,5 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
     @Modifying
     @Query(value = "INSERT INTO feedback(userId, taskId, content, createDate) VALUES(?1, ?2, ?3, now())",nativeQuery = true)
-    void createReply(long userId, long boardId, String content);
+    void createReply(long userId, long taskId, String content);
 }
