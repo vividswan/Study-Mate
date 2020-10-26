@@ -37,9 +37,10 @@ let index = {
     createFeedback: function (){
         let data={
             userId:$("#userId").val(),
-            taskId:$("#id").val(),
+            taskId:$("#taskId").val(),
             content:$("#feedback").val(),
         }
+        console.log(data.taskId);
         if(data.content==""){
             alert("피드백 내용을 입력해주세요.");
             return;
@@ -113,7 +114,7 @@ let index = {
     },
     delete: function (){
        let data = {
-           id: $("#id").val()
+           id: $("#taskId").val()
        }
        $.ajax({
            type:"DELETE",
