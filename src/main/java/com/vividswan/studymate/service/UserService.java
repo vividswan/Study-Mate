@@ -23,7 +23,6 @@ public class UserService {
     public boolean join(UserJoinDto userJoinDto) {
         User findUser = userRepository.findByUsername(userJoinDto.getUsername()).orElseGet(()->
             null);
-        System.out.println(findUser);
         if(findUser!=null) return false;
         String rawPassword = userJoinDto.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
